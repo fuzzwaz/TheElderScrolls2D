@@ -9,11 +9,14 @@
 #ifndef Space_Invaders_GameManager_h
 #define Space_Invaders_GameManager_h
 
-#include "PlayerShip.h"
-#include "BasicEnemy.h"
-#include "Block.h"
+#include "Texture.h"
 #include "CEvent.h"
 #include "vector"
+
+class Player;
+
+const int SCREEN_WIDTH = 1000;
+const int SCREEN_HEIGHT = 750;
 
 class GameManager
 {
@@ -32,7 +35,6 @@ public:
     void close();
     void checkCollisions();
     
-    LTexture* getShotTexture();
     SDL_Renderer* getRenderer();
     static GameManager* getGameManager();
     
@@ -42,19 +44,9 @@ private:
     
     SDL_Window* gWindow = NULL;         //Main Window
     SDL_Renderer* gRenderer = NULL;     //Window Renderer
-    LTexture shipTexture;               //Scene texture
-    LTexture enemyTexture;
-    LTexture blockTexture;
-    LTexture* shotTexture;
-    PlayerShip* mainShip;
-    Block blocks[4];
-    BasicEnemy bEnemy[22];
-    std::vector<PlayerShot*> shots;
-    
-    int blockRange[2];
-    int row1Range[2];
-    int row2Range[2];
-    
+    Texture* t_front_player = NULL;
+    Player* player;
+
     static GameManager* gameManager;
 
 };

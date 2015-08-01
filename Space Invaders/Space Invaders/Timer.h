@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Ramy Fawaz. All rights reserved.
 //
 
-#ifndef __Space_Invaders__LTimer__
-#define __Space_Invaders__LTimer__
+#ifndef __Space_Invaders__Timer__
+#define __Space_Invaders__Timer__
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -16,11 +16,11 @@
 #include <string>
 #include <sstream>
 
-class LTimer
+class Timer
 {
 public:
     //Initializes variables
-    LTimer();
+    Timer();
     
     //The various clock actions
     void start();

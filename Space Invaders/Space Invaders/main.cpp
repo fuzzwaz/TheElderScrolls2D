@@ -8,7 +8,7 @@
 
 #include "GameManager.h"
 #include <iostream>
-#include "LTimer.h"
+#include "Timer.h"
 #include <string> 
 #include <sstream>
 
@@ -36,10 +36,10 @@ int main( int argc, char* args[] )
         SDL_Event e;
         
         //The frames per second timer
-        LTimer fpsTimer;
+        Timer fpsTimer;
         
         //The frames per second cap timer
-        LTimer capTimer;
+        Timer capTimer;
         
         //Start counting frames per second
         int countedFrames = 0;

@@ -8,8 +8,8 @@
 
 
 
-#ifndef Space_Invaders_LTexture_h
-#define Space_Invaders_LTexture_h
+#ifndef Space_Invaders_Texture_h
+#define Space_Invaders_Texture_h
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -19,14 +19,14 @@
 #include <vector>
 
 
-class LTexture
+class Texture
 {
 public:
     //Initializes variables
-    LTexture();
+    Texture();
     
     //Deallocates memory
-    ~LTexture();
+    ~Texture();
     
     //Loads image at specified path
     bool loadFromFile( std::string path );
