@@ -7,6 +7,7 @@
 //
 
 #include "Player.h"
+#include "GameManager.h"
 
 
 Player::Player() 
@@ -30,6 +31,11 @@ void Player::setPos(int xPos, int yPos)
 	posY = yPos;
 }
 
+void Player::setAnimation(a_PlayerMovement animation)
+{
+    setTexture(GameManager::getGameManager()->movementAnimations[animation]);
+}
+
 void Player::handleEvent(SDL_Event& e)
 {
     //If a key was pressed
@@ -38,15 +44,26 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
-            case SDLK_LEFT: velX -= velocity; break;
-            case SDLK_RIGHT: velX += velocity; break;
-            case SDLK_a: velX -= velocity; break;
-            case SDLK_d: velX += velocity; break;
-
-            case SDLK_UP: velY -= velocity; break;
-            case SDLK_DOWN: velY += velocity; break;
-            case SDLK_w: velY -= velocity; break;
-            case SDLK_s: velY += velocity; break;
+            case SDLK_a:
+                velX -= velocity;
+                if (isStationary()){setAnimation(a_PlayerMovement::LEFT_SIDE);}
+                direction[a_Directions::LEFT] = true;
+                break;
+            case SDLK_d:
+                velX += velocity;
+                if (isStationary()){setAnimation(a_PlayerMovement::RIGHT_SIDE);}
+                direction[a_Directions::RIGHT] = true;
+                break;
+            case SDLK_w:
+                velY -= velocity;
+                if (isStationary()){setAnimation(a_PlayerMovement::FORWARD);}
+                direction[a_Directions::UP] = true;
+                break;
+            case SDLK_s:
+                velY += velocity;
+                if (isStationary()){setAnimation(a_PlayerMovement::BACKWARDS);}
+                direction[a_Directions::DOWN] = true;
+                break;
         }
     }
     //If a key was released
@@ -54,15 +71,26 @@ void Player::handleEvent(SDL_Event& e)
         //Adjust the velocity
         switch( e.key.keysym.sym )
         {
-            case SDLK_LEFT: velX += velocity; break;
-            case SDLK_RIGHT: velX -= velocity; break;
-            case SDLK_a: velX += velocity; break;
-            case SDLK_d: velX -= velocity; break;
-
-            case SDLK_UP: velY += velocity; break;
-            case SDLK_DOWN: velY -= velocity; break;
-            case SDLK_w: velY += velocity; break;
-            case SDLK_s: velY -= velocity; break;
+            case SDLK_a:
+                velX += velocity;
+                direction[a_Directions::LEFT] = false;
+                changeDirection();
+                break;
+            case SDLK_d:
+                velX -= velocity;
+                direction[a_Directions::RIGHT] = false;
+                changeDirection();
+                break;
+            case SDLK_w:
+                velY += velocity;
+                direction[a_Directions::UP] = false;
+                changeDirection();
+                break;
+            case SDLK_s:
+                velY -= velocity;
+                direction[a_Directions::DOWN] = false;
+                changeDirection();
+                break;
         }
     }
 }
@@ -82,4 +110,32 @@ void Player::render()
     test_Rectangle->h = height;
     
     texture->render(posX, posY, test_Rectangle);
+}
+
+void Player::changeDirection()
+{
+    if (direction[a_Directions::UP])
+    {
+        setAnimation(a_PlayerMovement::FORWARD);
+    }
+    else if (direction[a_Directions::DOWN])
+    {
+        setAnimation(a_PlayerMovement::BACKWARDS);
+    }
+    else if (direction[a_Directions::LEFT])
+    {
+        setAnimation(a_PlayerMovement::LEFT_SIDE);
+    }
+    else if (direction[a_Directions::RIGHT])
+    {
+        setAnimation(a_PlayerMovement::RIGHT_SIDE);
+    }
+}
+
+bool Player::isStationary()
+{
+    return (!direction[a_Directions::UP] &&
+            !direction[a_Directions::DOWN] &&
+            !direction[a_Directions::RIGHT] &&
+            !direction[a_Directions::LEFT]);
 }

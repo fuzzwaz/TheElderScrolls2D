@@ -11,6 +11,7 @@
 
 #include "Texture.h"
 #include "CEvent.h"
+#include "Animation_Player.h"
 
 class Player
 {
@@ -22,6 +23,7 @@ public:
 	void setTexture (Texture* playerTexture);
     void handleEvent( SDL_Event& e );
     void setPos(int xPos, int yPos);
+    void setAnimation(a_PlayerMovement animation);
     void move();
     void render();
 
@@ -31,6 +33,9 @@ public:
     int getPosY()	const {return posY;};
 
 private:
+    void changeDirection();
+    
+    bool isStationary();
 
 	const int width = 50;
     const int height = 140;
@@ -39,9 +44,8 @@ private:
     int posX, posY;
     int velX, velY;
     Texture* texture;
-
+    bool direction[4] = {0,0,0,0};
 };
 
-//testing
 
 #endif /* defined(__The_Elder_Scrolls_2D__Player__) */

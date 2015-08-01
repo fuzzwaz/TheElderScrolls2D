@@ -65,6 +65,12 @@ bool GameManager::init()
                 t_front_player = new Texture();
                 t_front_player->setRenderer(gRenderer);
                 player->setTexture(t_front_player);
+                
+                for (int i = 0; i < 4; i++)
+                {
+                    movementAnimations[i] = new Texture();
+                    movementAnimations[i]->setRenderer(gRenderer);
+                }
             }
         }
     }
@@ -96,6 +102,30 @@ bool GameManager::loadMedia()
        printf( "Failed to load player texture!\n" );
        success = false;
    }
+    
+    if( !movementAnimations[0]->loadFromFile( "Textures/Player/Front.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[1]->loadFromFile( "Textures/Player/Back.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[2]->loadFromFile( "Textures/Player/Side1.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[3]->loadFromFile( "Textures/Player/Side2.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
 
     return success;
 }

@@ -17,6 +17,7 @@
 		4824D6621B6C949600843A12 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4899541A1B6C931500F4FA3D /* Timer.cpp */; };
 		4824D6631B6C949700843A12 /* Timer.h in Sources */ = {isa = PBXBuildFile; fileRef = 4899541B1B6C931500F4FA3D /* Timer.h */; };
 		4824D6641B6C949900843A12 /* CEvent.h in Sources */ = {isa = PBXBuildFile; fileRef = 4899541C1B6C931500F4FA3D /* CEvent.h */; };
+		4824D6691B6D4E5E00843A12 /* Animation_Player.h in Sources */ = {isa = PBXBuildFile; fileRef = 4824D6671B6D4E4C00843A12 /* Animation_Player.h */; };
 		48D7EA841B0958BB0041CA3E /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7EA831B0958BB0041CA3E /* SDL2_image.framework */; };
 		48D7EA861B0958F20041CA3E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7EA851B0958F20041CA3E /* SDL2.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4824D6671B6D4E4C00843A12 /* Animation_Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Animation_Player.h; path = "Elder Scrolls 2D/Animation_Player.h"; sourceTree = "<group>"; };
 		489954131B6C931500F4FA3D /* GameManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameManager.cpp; path = "Elder Scrolls 2D/GameManager.cpp"; sourceTree = SOURCE_ROOT; };
 		489954141B6C931500F4FA3D /* GameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameManager.h; path = "Elder Scrolls 2D/GameManager.h"; sourceTree = SOURCE_ROOT; };
 		489954151B6C931500F4FA3D /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = "Elder Scrolls 2D/Player.cpp"; sourceTree = SOURCE_ROOT; };
@@ -83,6 +85,7 @@
 		48D7EA7B1B0956070041CA3E /* The Elder Scrolls 2D */ = {
 			isa = PBXGroup;
 			children = (
+				4824D6671B6D4E4C00843A12 /* Animation_Player.h */,
 				489954131B6C931500F4FA3D /* GameManager.cpp */,
 				489954141B6C931500F4FA3D /* GameManager.h */,
 				489954151B6C931500F4FA3D /* Player.cpp */,
@@ -93,18 +96,10 @@
 				4899541A1B6C931500F4FA3D /* Timer.cpp */,
 				4899541B1B6C931500F4FA3D /* Timer.h */,
 				4899541C1B6C931500F4FA3D /* CEvent.h */,
-				48FE01621B6C30FB0075AA77 /* Old Files */,
 			);
 			name = "The Elder Scrolls 2D";
-			path = "Space Invaders";
-			sourceTree = "<group>";
-		};
-		48FE01621B6C30FB0075AA77 /* Old Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Old Files";
-			sourceTree = "<group>";
+			path = "/Users/Fuzzwaz/TheElderScrolls2D/Elder Scrolls 2D/Space Invaders";
+			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
 
@@ -163,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4824D65F1B6C948600843A12 /* main.cpp in Sources */,
+				4824D6691B6D4E5E00843A12 /* Animation_Player.h in Sources */,
 				4824D65B1B6C947500843A12 /* GameManager.cpp in Sources */,
 				4824D65C1B6C947B00843A12 /* GameManager.h in Sources */,
 				4824D65E1B6C948300843A12 /* Player.h in Sources */,

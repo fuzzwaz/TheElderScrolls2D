@@ -38,6 +38,8 @@ public:
     SDL_Renderer* getRenderer();
     static GameManager* getGameManager();
     
+    Texture* movementAnimations[4];
+    
 private:
     
     GameManager();
