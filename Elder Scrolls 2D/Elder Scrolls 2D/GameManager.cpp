@@ -53,7 +53,7 @@ bool GameManager::init()
             }
             else
             {
-                SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF ); //Background color of renderer
+                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF ); //Background color of renderer
                 
                 //Initialize PNG loading
                 int imgFlags = IMG_INIT_PNG;
