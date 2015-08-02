@@ -8,14 +8,15 @@
 
 #include "Player.h"
 #include "GameManager.h"
+#include <iostream>
 
 
 Player::Player() 
-: posX(100), posY(100), velX(0), velY(0)
+: posX(100), posY(100), velX(0), velY(0), movementCounter(1)
 {}
 
 Player::Player(Texture* playerTexture) 
-: posX(100), posY(100), velX(0), velY(0)
+: posX(100), posY(100), velX(0), velY(0), movementCounter(1)
 {
     setTexture(playerTexture);
 }
@@ -31,9 +32,10 @@ void Player::setPos(int xPos, int yPos)
 	posY = yPos;
 }
 
-void Player::setAnimation(a_PlayerMovement animation)
+void Player::setAnimation(a_PlayerMovement animation, int frame)
 {
-    setTexture(GameManager::getGameManager()->movementAnimations[animation]);
+    setTexture(GameManager::getGameManager()->movementAnimations[animation][frame]);
+    currentAnimation = animation;
 }
 
 void Player::handleEvent(SDL_Event& e)
@@ -47,21 +49,25 @@ void Player::handleEvent(SDL_Event& e)
             case SDLK_a:
                 velX -= velocity;
                 if (isStationary()){setAnimation(a_PlayerMovement::LEFT_SIDE);}
+                if (!time_movement.isStarted()){time_movement.start();}
                 direction[a_Directions::LEFT] = true;
                 break;
             case SDLK_d:
                 velX += velocity;
                 if (isStationary()){setAnimation(a_PlayerMovement::RIGHT_SIDE);}
+                if (!time_movement.isStarted()){time_movement.start();}
                 direction[a_Directions::RIGHT] = true;
                 break;
             case SDLK_w:
                 velY -= velocity;
                 if (isStationary()){setAnimation(a_PlayerMovement::FORWARD);}
+                if (!time_movement.isStarted()){time_movement.start();}
                 direction[a_Directions::UP] = true;
                 break;
             case SDLK_s:
                 velY += velocity;
                 if (isStationary()){setAnimation(a_PlayerMovement::BACKWARDS);}
+                if (!time_movement.isStarted()){time_movement.start();}
                 direction[a_Directions::DOWN] = true;
                 break;
         }
@@ -74,21 +80,25 @@ void Player::handleEvent(SDL_Event& e)
             case SDLK_a:
                 velX += velocity;
                 direction[a_Directions::LEFT] = false;
+                if (isStationary()){time_movement.stop();}
                 changeDirection();
                 break;
             case SDLK_d:
                 velX -= velocity;
                 direction[a_Directions::RIGHT] = false;
+                if (isStationary()){time_movement.stop();}
                 changeDirection();
                 break;
             case SDLK_w:
                 velY += velocity;
                 direction[a_Directions::UP] = false;
+                if (isStationary()){time_movement.stop();}
                 changeDirection();
                 break;
             case SDLK_s:
                 velY -= velocity;
                 direction[a_Directions::DOWN] = false;
+                if (isStationary()){time_movement.stop();}
                 changeDirection();
                 break;
         }
@@ -110,6 +120,14 @@ void Player::render()
     test_Rectangle->h = height;
     
     texture->render(posX, posY, test_Rectangle);
+
+    if (!isStationary() && (time_movement.getTicks() > walkingAnimationDelta))
+    {
+        setAnimation(currentAnimation, movementCounter);
+        movementCounter++;
+        if (movementCounter > 6) {movementCounter = 1;}
+        time_movement.start();
+    }
 }
 
 void Player::changeDirection()

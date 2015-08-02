@@ -10,6 +10,7 @@
 #define Space_Invaders_GameManager_h
 
 #include "Texture.h"
+#include "Timer.h"
 #include "CEvent.h"
 #include "vector"
 
@@ -38,7 +39,7 @@ public:
     SDL_Renderer* getRenderer();
     static GameManager* getGameManager();
     
-    Texture* movementAnimations[4];
+    Texture* movementAnimations[4][7];
     
 private:
     

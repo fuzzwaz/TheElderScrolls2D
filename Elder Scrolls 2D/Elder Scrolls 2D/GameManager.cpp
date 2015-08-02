@@ -9,6 +9,7 @@
 
 #include "GameManager.h"
 #include "Player.h"
+#include "Animation_Player.h"
 #include <iostream>
 
 GameManager::GameManager()
@@ -64,13 +65,17 @@ bool GameManager::init()
                 }
                 t_front_player = new Texture();
                 t_front_player->setRenderer(gRenderer);
-                player->setTexture(t_front_player);
                 
                 for (int i = 0; i < 4; i++)
                 {
-                    movementAnimations[i] = new Texture();
-                    movementAnimations[i]->setRenderer(gRenderer);
+                    for (int j = 0; j < 7; ++j)
+                    {
+                        movementAnimations[i][j] = new Texture();
+                        movementAnimations[i][j]->setRenderer(gRenderer);
+                    }
                 }
+
+                player->setTexture(movementAnimations[a_PlayerMovement::BACKWARDS][0]);
             }
         }
     }
@@ -97,31 +102,61 @@ bool GameManager::loadMedia()
     //Loading success flag
     bool success = true;
     
-   if( !t_front_player->loadFromFile( "Textures/Player/Front.png" ) )
-   {
-       printf( "Failed to load player texture!\n" );
-       success = false;
-   }
-    
-    if( !movementAnimations[0]->loadFromFile( "Textures/Player/Front.png" ) )
+    if( !movementAnimations[a_PlayerMovement::FORWARD][0]->loadFromFile( "Textures/Player/Front.png" ) )
     {
         printf( "Failed to load player texture!\n" );
         success = false;
     }
     
-    if( !movementAnimations[1]->loadFromFile( "Textures/Player/Back.png" ) )
+    if( !movementAnimations[a_PlayerMovement::BACKWARDS][0]->loadFromFile( "Textures/Player/Back.png" ) )
     {
         printf( "Failed to load player texture!\n" );
         success = false;
     }
     
-    if( !movementAnimations[2]->loadFromFile( "Textures/Player/Side1.png" ) )
+    if( !movementAnimations[a_PlayerMovement::RIGHT_SIDE][0]->loadFromFile( "Textures/Player/Side1.png" ) )
     {
         printf( "Failed to load player texture!\n" );
         success = false;
     }
     
-    if( !movementAnimations[3]->loadFromFile( "Textures/Player/Side2.png" ) )
+    if( !movementAnimations[a_PlayerMovement::LEFT_SIDE][0]->loadFromFile( "Textures/Player/Side2.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+
+    if( !movementAnimations[a_PlayerMovement::BACKWARDS][1]->loadFromFile( "Textures/Player/Walking/Back_Walk_1.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+
+    if( !movementAnimations[a_PlayerMovement::BACKWARDS][2]->loadFromFile( "Textures/Player/Walking/Back_Walk_2.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+
+    if( !movementAnimations[a_PlayerMovement::BACKWARDS][3]->loadFromFile( "Textures/Player/Walking/Back_Walk_3.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+
+    if( !movementAnimations[a_PlayerMovement::BACKWARDS][4]->loadFromFile( "Textures/Player/Walking/Back_Walk_4.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+
+    if( !movementAnimations[a_PlayerMovement::BACKWARDS][5]->loadFromFile( "Textures/Player/Walking/Back_Walk_5.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+
+    if( !movementAnimations[a_PlayerMovement::BACKWARDS][6]->loadFromFile( "Textures/Player/Walking/Back_Walk_6.png" ) )
     {
         printf( "Failed to load player texture!\n" );
         success = false;

@@ -10,6 +10,7 @@
 #define __The_Elder_Scrolls_2D__Player__
 
 #include "Texture.h"
+#include "Timer.h"
 #include "CEvent.h"
 #include "Animation_Player.h"
 
@@ -23,7 +24,7 @@ public:
 	void setTexture (Texture* playerTexture);
     void handleEvent( SDL_Event& e );
     void setPos(int xPos, int yPos);
-    void setAnimation(a_PlayerMovement animation);
+    void setAnimation(a_PlayerMovement animation, int frame = 0);
     void move();
     void render();
 
@@ -37,14 +38,22 @@ private:
     
     bool isStationary();
 
+    bool direction[4] = {0,0,0,0};
+
 	const int width = 50;
     const int height = 140;
     const int velocity = 3;
+    const int walkingAnimationDelta = 200;
 
     int posX, posY;
     int velX, velY;
+    int movementCounter;
+
+    a_PlayerMovement currentAnimation;
+
+    Timer time_movement;
+
     Texture* texture;
-    bool direction[4] = {0,0,0,0};
 };
 
 
