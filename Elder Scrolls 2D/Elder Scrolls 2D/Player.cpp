@@ -34,7 +34,7 @@ void Player::setPos(int xPos, int yPos)
 
 void Player::setAnimation(a_PlayerMovement animation, int frame)
 {
-    setTexture(GameManager::getGameManager()->movementAnimations[animation][frame]);
+    setTexture(GameManager::getGameManager()->movementAnimations[animation][movementCounter]);
     currentAnimation = animation;
 }
 
@@ -119,16 +119,19 @@ void Player::render()
     test_Rectangle->w = width;
     test_Rectangle->h = height;
     
-    texture->render(posX, posY, test_Rectangle);
+    
 
     if (!isStationary() && (time_movement.getTicks() > walkingAnimationDelta)
-        && currentAnimation == a_PlayerMovement::BACKWARDS)
+        && (currentAnimation == a_PlayerMovement::BACKWARDS || currentAnimation == a_PlayerMovement::RIGHT_SIDE))
     {
-        setAnimation(currentAnimation, movementCounter);
         movementCounter++;
         if (movementCounter > 6) {movementCounter = 1;}
+        setAnimation(currentAnimation, movementCounter);
         time_movement.start();
     }
+    
+    texture->render(posX, posY, test_Rectangle);
+
 }
 
 void Player::changeDirection()

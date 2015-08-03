@@ -161,6 +161,43 @@ bool GameManager::loadMedia()
         printf( "Failed to load player texture!\n" );
         success = false;
     }
+    
+    if( !movementAnimations[a_PlayerMovement::RIGHT_SIDE][1]->loadFromFile( "Textures/Player/Walking/Right_Walk_1.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[a_PlayerMovement::RIGHT_SIDE][2]->loadFromFile( "Textures/Player/Walking/Right_Walk_2.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[a_PlayerMovement::RIGHT_SIDE][3]->loadFromFile( "Textures/Player/Walking/Right_Walk_3.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[a_PlayerMovement::RIGHT_SIDE][4]->loadFromFile( "Textures/Player/Walking/Right_Walk_4.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[a_PlayerMovement::RIGHT_SIDE][5]->loadFromFile( "Textures/Player/Walking/Right_Walk_5.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+    
+    if( !movementAnimations[a_PlayerMovement::RIGHT_SIDE][6]->loadFromFile( "Textures/Player/Walking/Right_Walk_6.png" ) )
+    {
+        printf( "Failed to load player texture!\n" );
+        success = false;
+    }
+
 
     return success;
 }

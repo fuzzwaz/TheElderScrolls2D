@@ -40,8 +40,8 @@ private:
 
     bool direction[4] = {0,0,0,0};
 
-	const int width = 50;
-    const int height = 140;
+	const int width = 65; //50
+    const int height = 165;//165
     const int velocity = 3;
     const int walkingAnimationDelta = 200;
 
