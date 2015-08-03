@@ -121,7 +121,8 @@ void Player::render()
     
     texture->render(posX, posY, test_Rectangle);
 
-    if (!isStationary() && (time_movement.getTicks() > walkingAnimationDelta))
+    if (!isStationary() && (time_movement.getTicks() > walkingAnimationDelta)
+        && currentAnimation == a_PlayerMovement::BACKWARDS)
     {
         setAnimation(currentAnimation, movementCounter);
         movementCounter++;
