@@ -121,8 +121,7 @@ void Player::render()
     
     
 
-    if (!isStationary() && (time_movement.getTicks() > walkingAnimationDelta)
-        && (currentAnimation == a_PlayerMovement::BACKWARDS || currentAnimation == a_PlayerMovement::RIGHT_SIDE))
+    if (!isStationary() && (time_movement.getTicks() > walkingAnimationDelta))
     {
         movementCounter++;
         if (movementCounter > 6) {movementCounter = 1;}
